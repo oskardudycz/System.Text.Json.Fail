@@ -9,8 +9,8 @@ public class TargetSimplified
     public TargetSimplified[] Children { get; set; }
 }
 
-var document = new TargetSimplified { Color = Colors.Blue, Number = 1 };
-var str = JsonSerializer.ToString(document, new JsonSerializerOptions() { MaxDepth = 1 });
+var document = new TargetSimplified();
+var str = JsonSerializer.ToString(document);
 ```
 It's throwing `StackOverflowException`.
 

@@ -12,8 +12,7 @@ namespace System.Text.Json.Fail
         private static void Main(string[] args)
         {
             var document = new TargetSimplified();
-            var str = JsonSerializer.ToString(document,
-                new JsonSerializerOptions());
+            var str = JsonSerializer.ToString(document);
         }
     }
 }
