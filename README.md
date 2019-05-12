@@ -8,3 +8,5 @@ var document = new Target { Color = Colors.Blue, Number = 1 };
 var str = JsonSerializer.ToString(document, new JsonSerializerOptions() { MaxDepth = 1 });
 ```
 It's throwing `StackOverflowException`.
+
+It's reproducible by running sample [Program.cs](https://github.com/oskardudycz/System.Text.Json.Fail/blob/master/System.Text.Json.Fail/Program.cs)
