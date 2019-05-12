@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using Baseline;
 
@@ -15,84 +14,6 @@ namespace Marten.Testing
 
     public class Target
     {
-        private static readonly Random _random = new Random(67);
-
-        private static readonly string[] _strings =
-        {
-            "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Violet",
-            "Pink", "Gray", "Black"
-        };
-
-        private static readonly string[] _otherStrings =
-        {
-            "one", "two", "three", "four", "five", "six", "seven", "eight",
-            "nine", "ten"
-        };
-
-        public static IEnumerable<Target> GenerateRandomData(int number)
-        {
-            var i = 0;
-            while (i < number)
-            {
-                yield return Random(true);
-
-                i++;
-            }
-        }
-
-        public static Target Random(bool deep = false)
-        {
-            var target = new Target();
-            target.String = _strings[_random.Next(0, 10)];
-            target.AnotherString = _otherStrings[_random.Next(0, 10)];
-            target.Number = _random.Next();
-
-            target.Flag = _random.Next(0, 10) > 5;
-
-            target.Float = float.Parse(_random.NextDouble().ToString());
-
-            target.NumberArray = new[] { _random.Next(0, 10), _random.Next(0, 10), _random.Next(0, 10) };
-
-            target.NumberArray = target.NumberArray.Distinct().ToArray();
-
-            switch (_random.Next(0, 2))
-            {
-                case 0:
-                    target.Color = Colors.Blue;
-                    break;
-
-                case 1:
-                    target.Color = Colors.Green;
-                    break;
-
-                default:
-                    target.Color = Colors.Red;
-                    break;
-            }
-
-            target.Long = 100 * _random.Next();
-            target.Double = _random.NextDouble();
-            target.Long = _random.Next() * 10000;
-
-            target.Date = DateTime.Today.AddDays(_random.Next(-10000, 10000)).ToUniversalTime();
-
-            if (deep)
-            {
-                target.Inner = Random();
-
-                var number = _random.Next(1, 10);
-                target.Children = new Target[number];
-                for (int i = 0; i < number; i++)
-                {
-                    target.Children[i] = Random();
-                }
-
-                target.StringDict = Enumerable.Range(0, _random.Next(1, 10)).ToDictionary(i => $"key{i}", i => $"value{i}");
-            }
-
-            return target;
-        }
-
         public Target()
         {
             Id = Guid.NewGuid();
